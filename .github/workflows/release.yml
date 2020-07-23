@@ -95,7 +95,7 @@ jobs:
         name: win32
         # A file, directory or wildcard pattern that describes what to upload
         path: |
-          32bit/*.*
+          **/32bit
     - name: Upload a Build Artifact
       uses: actions/upload-artifact@v2
       with:
@@ -103,6 +103,6 @@ jobs:
         name: win64
         # A file, directory or wildcard pattern that describes what to upload
         path: |
-          64bit/*.*
+          **/64bit
 
 
