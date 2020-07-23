@@ -85,26 +85,24 @@ jobs:
       run: 'C:/"Program Files (x86)"/"Microsoft Visual Studio"/2019/Enterprise/VC/Auxiliary/Build/vcvars64.bat'
     - name: setup_build_dir
       run: mkdir buildproducts
-    - name: cmake
-      working-directory: buildproducts
-      run: cmake ..
     - name: make
       working-directory: buildproducts
       run: ..\\win_build\\Makefile2.bat
-    - name: find
-      working-directory: buildproducts
-      run: |
-        dir 
-        dir bin
-        dir lib
-    #- name: Upload a Build Artifact
-    #  uses: actions/upload-artifact@v2
-    #  with:
-    #    # Artifact name
-    #    name: macOS
-    #    # A file, directory or wildcard pattern that describes what to upload
-    #    path: |
-    #      */bin/runepanet
-    #      */lib/libepanet2.dylib
-    #      */lib/libepanet-output.dylib
+    - name: Upload a Build Artifact
+      uses: actions/upload-artifact@v2
+      with:
+        # Artifact name
+        name: win32
+        # A file, directory or wildcard pattern that describes what to upload
+        path: |
+          32bit/*.*
+    - name: Upload a Build Artifact
+      uses: actions/upload-artifact@v2
+      with:
+        # Artifact name
+        name: win64
+        # A file, directory or wildcard pattern that describes what to upload
+        path: |
+          64bit/*.*
+
 
