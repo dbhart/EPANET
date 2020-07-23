@@ -44,7 +44,7 @@ jobs:
         python-version: 3.8
         conda-channels: anaconda
     - name: install cmake
-      run: conda install cmake
+      run: conda install -y cmake
     - name: setup_build_dir
       run: mkdir buildproducts
     - name: cmake
