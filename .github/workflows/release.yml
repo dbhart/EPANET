@@ -1,0 +1,58 @@
+name: Binary Release
+
+on: [push]
+
+jobs:
+  linux:
+
+    runs-on: ubuntu-latest
+    
+    steps:
+    - uses: actions/checkout@v1
+    - name: setup_build_dir
+      run: mkdir buildproducts
+    - name: cmake
+      working-directory: ./buildproducts
+      run: cmake ..
+    - name: make
+      working-directory: ./buildproducts
+      run: make
+    - name: find
+      working-directory: ./buildproducts
+      run: find .
+    - name: Upload a Build Artifact
+      uses: actions/upload-artifact@v2
+      with:
+        # Artifact name
+        name: linux
+        # A file, directory or wildcard pattern that describes what to upload
+        path: |
+          */bin/runepanet
+          */lib/libepanet2.so
+          */lib/libepanet-output.so
+
+  macOS:
+
+    runs-on: macOS-latest
+    
+    steps:
+    - uses: actions/checkout@v1
+    - name: Setup conda
+      uses: s-weigand/setup-conda@v1
+      with:
+        update-conda: true
+        python-version: 3.8
+        conda-channels: anaconda
+    - name: install cmake
+      run: conda install cmake
+    - name: setup_build_dir
+      run: mkdir buildproducts
+    - name: cmake
+      working-directory: ./buildproducts
+      run: cmake ..
+    - name: make
+      working-directory: ./buildproducts
+      run: make
+    - name: find
+      working-directory: ./buildproducts
+      run: find .
