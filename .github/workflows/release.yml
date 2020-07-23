@@ -81,6 +81,8 @@ jobs:
         conda-channels: anaconda
     - name: install cmake
       run: conda install -y cmake
+    - name: setup visual studio
+      run: "C:/Program Files (x86)/Microsoft Visual Studio/2019/Enterprise/VC/Auxiliary/Build/vcvars64.bat"
     - name: Add msbuild to PATH
       uses: microsoft/setup-msbuild@v1.0.1
       with:
