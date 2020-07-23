@@ -83,10 +83,6 @@ jobs:
       run: conda install -y cmake
     - name: setup visual studio
       run: 'C:/"Program Files (x86)"/"Microsoft Visual Studio"/2019/Enterprise/VC/Auxiliary/Build/vcvars64.bat'
-    - name: Add msbuild to PATH
-      uses: microsoft/setup-msbuild@v1.0.1
-      with:
-        vs-version: '[14.5,15.5,16.4,16.5)'
     - name: setup_build_dir
       run: mkdir buildproducts
     - name: cmake
@@ -94,7 +90,7 @@ jobs:
       run: cmake ..
     - name: make
       working-directory: buildproducts
-      run: make
+      run: ..\\win_build\\Makefile2.bat
     - name: find
       working-directory: buildproducts
       run: |
